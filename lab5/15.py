@@ -164,7 +164,7 @@ finished = False
 
 while not finished:
     clock.tick(FPS)
-    for event in event.get():
-        if event.type == QUIT:
+    for event1 in event.get():
+        if event1.type == QUIT:
             finished = True
 quit()
