@@ -3,7 +3,7 @@ from pygame.draw import *
 from random import randint
 pygame.init()
 
-FPS = 1
+FPS = 300
 screen = pygame.display.set_mode((1200, 900))
 
 RED = (255, 0, 0)
@@ -15,6 +15,9 @@ CYAN = (0, 255, 255)
 BLACK = (0, 0, 0)
 COLORS = [RED, BLUE, YELLOW, GREEN, MAGENTA, CYAN]
 
+color = COLORS[randint(0, 5)]
+color2 = COLORS[randint(0, 5)]
+color1 = COLORS[randint(0, 5)]
 def new_ball():
     '''Рисует новый шарик '''
     global x, y, r
@@ -35,6 +38,26 @@ def new_ball():
     r2 = randint(10, 100)
     color2 = COLORS[randint(0, 5)]
     circle(screen, color2, (x2, y2), r2)
+
+def move_balls():
+    global x, y, r
+    circle(screen, BLACK, (x, y), r)
+    x += randint(-2, 5)
+    y -= randint(-2, 2)
+    circle(screen, color, (x, y), r)
+    pygame.display.update()
+    global x1, y1, r1
+    circle(screen, BLACK, (x1, y1), r1)
+    x1 += randint(-2, 5)
+    y1 -= randint(-2, 2)
+    circle(screen, color1, (x1, y1), r1)
+    pygame.display.update()
+    global x2, y2, r2
+    circle(screen, BLACK, (x2, y2), r2)
+    x2 += randint(-2, 5)
+    y2 -= randint(-2, 2)
+    circle(screen, color2, (x2, y2), r2)
+    pygame.display.update()
         
        
 def score(pos):
@@ -50,13 +73,14 @@ finished = False
 
 while not finished:
     clock.tick(FPS)
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            finished = True
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            print('Click!')
-            if score(event.pos) == 1:
-                points += 1
+    new_ball()
+    pygame.display.update()
+    while 1:
+        clock.tick(FPS)
+        move_balls()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                finished = True
     new_ball()
     pygame.display.update()
     screen.fill(BLACK)
@@ -64,4 +88,3 @@ print('Сумма очков:', points)
 pygame.quit()
 
 
-# In[ ]:
