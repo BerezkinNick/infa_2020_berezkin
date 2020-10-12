@@ -2,10 +2,10 @@ import pygame
 from pygame.draw import *
 from random import randint
 pygame.init()
-
 FPS = 2
 screen = pygame.display.set_mode((1200, 900))
 
+#Цвета шариков:
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
@@ -15,12 +15,14 @@ CYAN = (0, 255, 255)
 BLACK = (0, 0, 0)
 COLORS = [RED, BLUE, YELLOW, GREEN, MAGENTA, CYAN]
 
+#Случайный выбор цветов:
 color = COLORS[randint(0, 5)]
 color2 = COLORS[randint(0, 5)]
 color1 = COLORS[randint(0, 5)]
 color3 = COLORS[randint(0, 5)]
-def new_ball():
-    '''Рисует новый шарик '''
+
+def new_balls():
+    '''Рисует 4 шарика '''
     global x, y, r
     x = randint(100, 1100)
     y = randint(100, 900)
@@ -45,14 +47,18 @@ def new_ball():
     r3 = randint(10, 100)
     color = COLORS[randint(0, 5)]
     circle(screen, color3, (x3, y3), r3)
-        
        
 def score(pos):
-        if (pos[0] - x)**2 + (pos[1] - y)**2 <= r**2 or (pos[0] - x1)**2 + (pos[1] - y1)**2 <= r1**2 or (pos[0] - x2)**2 + (pos[1] - y2)**2 <= r2**2:
-            return 1
-        else:
-            return 0
-points = 0
+    '''Учёт попаданий'''
+    if ((pos[0] - x)**2 + (pos[1] - y)**2 <= r**2
+        or (pos[0] - x1)**2 + (pos[1] - y1)**2 <= r1**2
+        or (pos[0] - x2)**2 + (pos[1] - y2)**2 <= r2**2
+        or (pos[0] - x3)**2 + (pos[1] - y3)**2 <= r3**2):
+        return 1
+    else:
+        return 0
+        
+points = 0 #очки
 
 pygame.display.update()
 clock = pygame.time.Clock()
@@ -67,13 +73,9 @@ while not finished:
             print('Click!')
             if score(event.pos) == 1:
                 print('Попадание')
-                points += 1
-    new_ball()
+                points += 1 #подсчёт очков
+    new_balls()
     pygame.display.update()
     screen.fill(BLACK)
-print('Сумма баллов:', points)
+print('Сумма очков:', points)
 pygame.quit()
-
-
-
-# In[ ]:
