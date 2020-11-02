@@ -1,0 +1,16 @@
+NAME:      000
+Ivan        28
+NAME:      000
+Коля        46
+NAME:      000
+Вася        36
+NAME:      000
+Петя        39
+NAME:      000
+Дима        123
+NAME:      000
+Nick        0
+NAME:      000
+Уася        53
+NAME:      000
+NNNN        27
