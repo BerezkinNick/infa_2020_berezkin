@@ -165,7 +165,7 @@ finished = False
 
 background='background.jpg'
 
-def new_game():
+def restart_game():
     bullet = 0
     balls = []
     targ1.livetime = 1
@@ -209,7 +209,7 @@ def new_game():
 
     
 while not finished:
-    finished = new_game()
+    finished = restart_game()
 
 pygame.quit()
 
