@@ -115,8 +115,8 @@ class target(Game_Pushka):
         x=self.x = randint(600, 880)
         y=self.y = randint(100, 400)
         r=self.r = randint(20, 60)
-        self.vx = randint(-10, 10)
-        self.vy = randint(-10, 10)
+        self.vx = randint(-30, 30)
+        self.vy = randint(-30, 30)
         color=self.color = COLORS[randint(0, 5)]
 
     def move_targets(self):
@@ -127,8 +127,8 @@ class target(Game_Pushka):
             self.vx = - int(k*self.vx/10)
             self.x = (0 + self.r)
         if self.x > (1000 - self.r):
-            k=randint(1, 20)/10
-            self.vx = - int(k*self.vx)
+            k=randint(1, 20)
+            self.vx = - int(k*self.vx/10)
             self.x = (1000 - self.r)
         if self.y < (0 + self.r):
             k=randint(1, 20)
