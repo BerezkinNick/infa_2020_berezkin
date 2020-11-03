@@ -307,9 +307,3 @@ while not done:
 
 
 pg.quit()
-
-
-
-
-            
-
